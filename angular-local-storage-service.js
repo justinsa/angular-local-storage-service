@@ -1,6 +1,6 @@
 (function (window, angular, undefined) {
   'use strict';
-  angular.module('local.storage', []).factory('$store', ['$cookieStore', '$log', '$parse', function($cookieStore, $log, $parse) {
+  angular.module('local.storage', ['ngCookies']).factory('$store', ['$cookieStore', '$log', '$parse', function($cookieStore, $log, $parse) {
     var configuration = {
       cookieFallback: true,
       useSessionStorage: false
