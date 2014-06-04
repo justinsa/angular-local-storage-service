@@ -5,8 +5,6 @@
     "type": "git",
     "url": "https://github.com/EQCO/angular-local-storage-service/"
   },
-  "dependencies": {
-  },
   "devDependencies": {
     "bower": "1.3.x",
     "gulp": "3.x",
