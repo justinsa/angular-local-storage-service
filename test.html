@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mocha Test Runner</title>
+    <link rel="stylesheet" href=".\vendor\mocha\mocha.css">
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script src=".\vendor\mocha\mocha.js"></script>
+    <script src=".\vendor\should\should.js"></script>
+    <script src=".\vendor\sinon\lib\sinon.js"></script>
+    <script src=".\vendor\sinon\lib\sinon\spy.js"></script>
+    <script src=".\vendor\sinon\lib\sinon\call.js"></script>
+    <script src=".\vendor\sinon\lib\sinon\behavior.js"></script>
+    <script src=".\vendor\sinon\lib\sinon\stub.js"></script>
+    <script src=".\vendor\sinon\lib\sinon\mock.js"></script>
+    <script src=".\vendor\sinon\lib\sinon\collection.js"></script>
+    <script src=".\vendor\sinon\lib\sinon\assert.js"></script>
+    <script src=".\vendor\sinon\lib\sinon\sandbox.js"></script>
+    <script src=".\vendor\sinon\lib\sinon\test.js"></script>
+    <script src=".\vendor\sinon\lib\sinon\test_case.js"></script>
+    <script src=".\vendor\sinon\lib\sinon\assert.js"></script>
+    <script src=".\vendor\sinon\lib\sinon\match.js"></script>
+
+    <script>mocha.setup('bdd');</script>
+
+    <script src=".\vendor\jquery\dist\jquery.js"></script>
+    <script src=".\vendor\underscore\underscore.js"></script>
+    <script src=".\vendor\underscore.string\lib\underscore.string.js"></script>
+    <script src=".\vendor\angular\angular.js"></script>
+    <script src=".\vendor\angular-cookies\angular-cookies.js"></script>
+    <script src=".\vendor\angular-mocks\angular-mocks.js"></script>
+
+    <script src=".\angular-local-storage-service.js"></script>
+
+    <script src=".\spec\services.js"></script>
+
+    <script>mochaPhantomJS.run();</script>
+  </body>
+</html>
