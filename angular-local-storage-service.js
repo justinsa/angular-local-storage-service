@@ -1,6 +1,6 @@
 (function (window, angular, undefined) {
   'use strict';
-  angular.module('local.storage',[]).factory('$store', ['$cookieStore', '$parse', function($cookieStore, $parse) {
+  angular.module('local.storage', []).factory('$store', ['$cookieStore', '$log', '$parse', function($cookieStore, $log, $parse) {
     var configuration = {
       cookieFallback: true,
       useSessionStorage: false
@@ -110,9 +110,10 @@
         if (supported === true) {
           storage.clear();
         } else if (configuration.cookieFallback === true) {
-          $cookieStore.clear();
+          // $cookieStore has no method exposed for iterating over
+          // the cookies in it and no way to clear all cookies.
+          $log.warn('clearing cookies is unsupported');
         } else {
-          delete memStore;
           memStore = {};
         }
       }
