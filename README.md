@@ -8,7 +8,8 @@ The simplest local storage module you will ever use. Allowing you to set, get, r
 *Dependencies:*
 
 * AngularJS - http://angularjs.org
-* UnderscoreJS - http://underscorejs.org
+  * Angular Cookies - ngCookies
+* jQuery - http://jquery.com
 
 *Features:*
 

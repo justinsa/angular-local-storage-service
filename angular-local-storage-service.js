@@ -1,4 +1,4 @@
-(function (window, _, angular, undefined) {
+(function (window, angular, undefined) {
   'use strict';
   angular.module('local.storage',[]).factory('$store', ['$cookieStore', '$parse', function($cookieStore, $parse) {
     var configuration = {
@@ -118,4 +118,4 @@
       }
     };
   }]);
-})(window, window._, window.angular);
+})(window, window.angular);
