@@ -14,7 +14,7 @@ The simplest local storage module you will ever use. Allowing you to set, get, r
 *Features:*
 
 * Two way bind your $scope variable value to localStorage or sessionStorage which will be updated whenever the model is updated, and vice versa.
-* You can directly store Objects, Arrays, Floats, Booleans, and Strings. No need to convert your objects to strings and then reverse them. 
+* You can directly store Objects, Arrays, Floats, Booleans, and Strings. No need to convert your objects to strings and then reverse them.
 * Cookie fallback if Storage is not supported.
 * In-memory fallback if Storage is not supported and cookies are disabled.
 
@@ -53,8 +53,8 @@ The default configuration is:
 
 To override the default configuration options, configure the module with an options argument during application configuration:
 ```JAVASCRIPT
-app.config(['$store', function($store) {
-  $store.configure({
+app.config(['$storeProvider', function($storeProvider) {
+  $storeProvider.configure({
     cookieFallback: false,
     useSessionStorage: true
   });
