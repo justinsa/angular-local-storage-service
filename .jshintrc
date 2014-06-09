@@ -1,7 +1,6 @@
 /**
- * Borrowed from https://github.com/airbnb/javascript
- *
- * Thanks AirBnB!
+ * JSHint Options: http://www.jshint.com/docs/options/
+ * Based on https://github.com/airbnb/javascript - Thanks AirBnB!
  */
 
 {
@@ -24,15 +23,24 @@
    * =================
    */
 
+  // Disable the use of bitwise operators.
+  "bitwise": true,
+
   // Force all variable names to use either camelCase style or UPPER_CASE
   // with underscores.
   "camelcase": true,
+
+  // Force the use of curly braces around blocks in loops and conditionals.
+  "curly": true,
 
   // Prohibit use of == and != in favor of === and !==.
   "eqeqeq": true,
 
   // Suppress warnings about == null comparisons.
   "eqnull": true,
+
+  // Prohibit use of immediate function invocations without wrapping parantheses.
+  "immed": true,
 
   // Enforce tab width of 2 spaces.
   "indent": 2,
@@ -42,6 +50,12 @@
 
   // Require capitalized names for constructor functions.
   "newcap": true,
+
+  // Prohibit use of arguments.caller and arguments.callee.
+  "noarg": true,
+
+  // Prohibit the use of constructor functions for side-effects.
+  "nonew": true,
 
   // Enforce use of single quotation marks for strings.
   "quotmark": "single",
@@ -55,20 +69,12 @@
   // Warn when variables are defined but never used.
   "unused": true,
 
-  // Enforce line length to 180 characters
-  // EQCO's only change to the linter
+  // Enforce line length to 180 characters.
   "maxlen": 180,
 
-  // Enforce placing 'use strict' at the top function scope
+  // Enforce placing 'use strict' at the top function scope.
   "strict": true,
 
-  // Globals that exist in our system that don't need a new definition
-  "globals": {
-    "angular": false,
-    "_": false,
-    "document": false,
-    "configuration": true,
-    "require": false,
-    "CryptoJS": false
-  }
+  // Enforce no trailing whitespace.
+  "trailing": true
 }
