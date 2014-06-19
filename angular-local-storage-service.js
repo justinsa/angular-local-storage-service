@@ -11,6 +11,7 @@
         configuration.cookieFallback = (typeof options.cookieFallback === 'undefined') ? true : options.cookieFallback;
         configuration.useSessionStorage = (typeof options.useSessionStorage === 'undefined') ? false : options.useSessionStorage;
       }
+      return configuration;
     };
 
     this.$get = ['$cookieStore', '$log', '$parse', function($cookieStore, $log, $parse) {
