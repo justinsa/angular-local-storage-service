@@ -105,5 +105,35 @@ describe('$store', function() {
         });
       });
     });
+
+    describe('remove', function() {
+      beforeEach(module('local.storage'));
+
+      it('should remove the value from the store', inject(function($store) {
+        sinon.spy($store.getStorage(), 'removeItem');
+        $store.remove('foo');
+        $store.getStorage().removeItem.calledOnce.should.be.true;
+      }));
+
+      it('should remove the value from the cookie store if the environment is not supported', inject(function($store, $cookieStore) {
+        $store.setSupported(false);
+        sinon.spy($cookieStore, 'remove');
+        $store.remove('foo');
+        $cookieStore.remove.calledOnce.should.be.true;
+      }));
+
+      it('should remove the value from the memStorage if the environment is not supported and cookie fallback is disabled', function() {
+        module('local.storage', ['$storeProvider', function($storeProvider) {
+          $storeProvider.configure({cookieFallback: false});
+        }]);
+        inject(function($store) {
+          $store.setSupported(false);
+          var result = $store.set('foo', 'bar');
+          $store.getMemStore()['foo'].should.equal('bar');
+          $store.remove('foo');
+          ($store.getMemStore()['foo'] === undefined).should.be.true;
+        });
+      });
+    });
   });
 });
