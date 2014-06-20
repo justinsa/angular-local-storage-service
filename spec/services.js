@@ -176,5 +176,19 @@ describe('$store', function() {
         ($store.get('foo') === null).should.be.true;
       }));
     });
+
+    describe('has', function() {
+      beforeEach(module('local.storage'));
+
+      it('should return false if the key is not in the store', inject(function($store) {
+        $store.remove('foo');
+        $store.has('foo').should.be.false;
+      }));
+
+      it('should return true if the key in the store', inject(function($store) {
+        $store.set('foo', 'bar');
+        $store.has('foo').should.be.true;
+      }));
+    })
   });
 });
