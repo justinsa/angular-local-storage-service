@@ -135,5 +135,23 @@ describe('$store', function() {
         });
       });
     });
+
+    describe('bind', function() {
+      beforeEach(module('local.storage'));
+
+      it('should add a watch to a scope', inject(function($store, $rootScope, $parse) {
+        var scope = $rootScope.$new();
+        sinon.spy(scope, '$watch');
+        $store.bind(scope, 'foo');
+        scope.$watch.calledOnce.should.be.true;
+      }));
+
+      it('should set the value to fallback if a fallback is given and key does not already exist', inject(function($store, $rootScope) {
+        var scope = $rootScope.$new();
+        $store.remove('foo');
+        $store.bind(scope, 'foo', 'bar');
+        $store.get('foo').should.equal('bar');
+      }));
+    })
   });
 });
