@@ -189,6 +189,50 @@ describe('$store', function() {
         $store.set('foo', 'bar');
         $store.has('foo').should.be.true;
       }));
-    })
+    });
+
+    describe('clear', function() {
+      beforeEach(module('local.storage'));
+
+      it('should remove everything if the environment is supported', inject(function($store) {
+        $store.set('foo', 1);
+        $store.set('bar', 2);
+        $store.set('baz', 3);
+        $store.clear();
+        $store.has('foo').should.be.false;
+        $store.has('bar').should.be.false;
+        $store.has('baz').should.be.false;
+      }));
+
+      it('should not remove anything if cookie fallback is enabled', inject(function($store) {
+        $store.setSupported(false);        
+        $store.set('foo', 1);
+        $store.set('bar', 2);
+        $store.set('baz', 3);
+        $store.clear();
+        $store.has('foo').should.be.true;
+        $store.has('bar').should.be.true;
+        $store.has('baz').should.be.true;
+      }));
+
+      it('should create a new memStorage object if environment is not supported and cookie fallback is disabled', function() {
+        module('local.storage', ['$storeProvider', function($storeProvider) {
+          $storeProvider.configure({cookieFallback: false});
+        }]);
+        inject(function($store) {
+          var memStorage = $store.getMemStore();
+          $store.setSupported(false);        
+          $store.set('foo', 1);
+          $store.set('bar', 2);
+          $store.set('baz', 3);
+          $store.clear();
+          $store.has('foo').should.be.false;
+          $store.has('bar').should.be.false;
+          $store.has('baz').should.be.false;
+          $store.getMemStore().should.not.equal(memStorage);
+          $store.getMemStore().should.be.empty;
+        });
+      });
+    });
   });
 });
