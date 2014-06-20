@@ -23,6 +23,11 @@
       var memStore = {};
 
       return {
+        getStorage: function() { return storage; },
+        getSupported: function() { return supported; },
+        setSupported: function(value) { supported = value; },
+        getMemstore: function() { return memStore; },
+
         /**
          * set - set a new local storage key-value pair
          * @param key - a string that will be used as the accessor for the pair
