@@ -152,6 +152,29 @@ describe('$store', function() {
         $store.bind(scope, 'foo', 'bar');
         $store.get('foo').should.equal('bar');
       }));
-    })
+    });
+
+    describe('unbind', function() {
+      beforeEach(module('local.storage'));
+
+      it('should empty the watcher', inject(function($store, $rootScope) {
+        var scope = $rootScope.$new();
+        sinon.spy(scope, '$watch');
+        $store.bind(scope, 'foo');
+        $store.unbind(scope, 'foo');
+
+        // We wanted the first call because the zeroth is the bind call
+        var watchCall = scope.$watch.getCall(1);
+        watchCall.args[1].toString().should.eql((function(){}).toString());
+      }));
+
+      it('should remove the key', inject(function($store, $rootScope) {
+        var scope = $rootScope.$new();
+        $store.bind(scope, 'foo', 'bar');
+        $store.get('foo').should.equal('bar');
+        $store.unbind(scope, 'foo');
+        ($store.get('foo') === null).should.be.true;
+      }));
+    });
   });
 });
