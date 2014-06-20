@@ -66,14 +66,42 @@ describe('$store', function() {
         result.should.equal('bar');
       }));
 
-      if('should store info in the memStorage if the environment is not supported and cookie fallback is disabled', function() {
-        module('local.storage').configure(['$storeProvider', function($storeProvider) {
+      it('should store info in the memStorage if the environment is not supported and cookie fallback is disabled', function() {
+        module('local.storage', ['$storeProvider', function($storeProvider) {
           $storeProvider.configure({cookieFallback: false});
         }]);
         inject(function($store) {
+          $store.setSupported(false);
           var result = $store.set('foo', 'bar');
-          $store.getMemstore()['foo'].should.equal('bar');
+          $store.getMemStore()['foo'].should.equal('bar');
           result.should.equal('bar');
+        });
+      });
+    });
+
+    describe('get', function() {
+      beforeEach(module('local.storage'));
+
+      it('should return the value from the store', inject(function($store) {
+        $store.set('foo', 'bar');
+        $store.get('foo').should.equal('bar');
+      }));
+
+      it('should return the value from the cookie store if the environment is not supported', inject(function($store) {
+        $store.setSupported(false);
+        $store.set('foo', 'bar');
+        $store.get('foo').should.equal('bar');
+      }));
+
+      it('should return the value from the memStorage if the environment is not supported and cookie fallback is disabled', function() {
+        module('local.storage', ['$storeProvider', function($storeProvider) {
+          $storeProvider.configure({cookieFallback: false});
+        }]);
+        inject(function($store) {
+          $store.setSupported(false);
+          var result = $store.set('foo', 'bar');
+          $store.getMemStore()['foo'].should.equal('bar');
+          $store.get('foo').should.equal('bar');
         });
       });
     });

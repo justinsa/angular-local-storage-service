@@ -26,7 +26,7 @@
         getStorage: function() { return storage; },
         getSupported: function() { return supported; },
         setSupported: function(value) { supported = value; },
-        getMemstore: function() { return memStore; },
+        getMemStore: function() { return memStore; },
 
         /**
          * set - set a new local storage key-value pair
