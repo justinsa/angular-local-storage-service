@@ -11,6 +11,7 @@
         configuration.cookieFallback = (typeof options.cookieFallback === 'undefined') ? true : options.cookieFallback;
         configuration.useSessionStorage = (typeof options.useSessionStorage === 'undefined') ? false : options.useSessionStorage;
       }
+      return configuration;
     };
 
     this.$get = ['$cookieStore', '$log', '$parse', function($cookieStore, $log, $parse) {
@@ -22,6 +23,11 @@
       var memStore = {};
 
       return {
+        getStorage: function() { return storage; },
+        getSupported: function() { return supported; },
+        setSupported: function(value) { supported = value; },
+        getMemStore: function() { return memStore; },
+
         /**
          * set - set a new local storage key-value pair
          * @param key - a string that will be used as the accessor for the pair
