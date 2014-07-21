@@ -1,12 +1,12 @@
 (function (window, angular, undefined) {
   'use strict';
-  angular.module('local.storage', ['ngCookies']).provider('$store', function(){
+  angular.module('local.storage', ['ngCookies']).provider('$store', function() {
     var configuration = {
       cookieFallback: true,
       useSessionStorage: false
     };
 
-    this.configure = function(options) {
+    this.configure = function (options) {
       if (typeof options !== 'undefined') {
         configuration.cookieFallback = (typeof options.cookieFallback === 'undefined') ? true : options.cookieFallback;
         configuration.useSessionStorage = (typeof options.useSessionStorage === 'undefined') ? false : options.useSessionStorage;
@@ -14,7 +14,7 @@
       return configuration;
     };
 
-    this.$get = ['$cookieStore', '$log', '$parse', function($cookieStore, $log, $parse) {
+    this.$get = ['$cookieStore', '$log', '$parse', function ($cookieStore, $log, $parse) {
       var storage = (typeof window.localStorage === 'undefined') ? undefined : window.localStorage;
       if (configuration.useSessionStorage === true) {
         storage = (typeof window.sessionStorage === 'undefined') ? undefined : window.sessionStorage;
@@ -34,7 +34,7 @@
          * @param value - the value to store
          * @returns {*} - returns @value
          */
-        set: function(key, value) {
+        set: function (key, value) {
           if (value === undefined || value === null) {
             this.remove(key);
             return value;
@@ -54,7 +54,7 @@
          * @param key - the string that is used to access the value
          * @returns {*} - the stored value
          */
-        get: function(key){
+        get: function (key){
           if (supported === true) {
             return angular.fromJson(storage.getItem(key));
           } else if (configuration.cookieFallback === true) {
@@ -67,7 +67,7 @@
          * remove - remove a key-value pair from local storage
          * @param key - the string that is used to access the pair
          */
-        remove: function(key) {
+        remove: function (key) {
           if (supported === true) {
             storage.removeItem(key);
           } else if (configuration.cookieFallback === true) {
@@ -99,7 +99,7 @@
          * @param $scope - the scope the variable was initially set in
          * @param key - the name of the variable you are unbinding
          */
-        unbind: function($scope, key) {
+        unbind: function ($scope, key) {
           $parse(key).assign($scope, null);
           $scope.$watch(key, function(){});
           this.remove(key);
@@ -126,6 +126,12 @@
           } else {
             memStore = {};
           }
+        },
+        /**
+         * getConfiguration - returns the configuration hash.
+         */
+        getConfiguration: function() {
+          return configuration;
         }
       };
     }];

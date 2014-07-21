@@ -2,7 +2,7 @@
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 gulp.task('js:lint', function() {
-  return gulp.src('./angular-local-storage-service.js')
+  return gulp.src(['./angular-local-storage-service.js', './gulpfile.js', './spec/services.js'])
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 });
