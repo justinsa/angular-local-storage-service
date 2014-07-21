@@ -19,7 +19,6 @@
   },
   "scripts": {
     "postinstall": "node ./node_modules/bower/bin/bower install",
-    "postprune": "node ./node_modules/bower/bin/bower prune",
     "postupdate": "node ./node_modules/bower/bin/bower update",
     "test": "gulp js:test"
   }
