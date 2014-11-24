@@ -23,10 +23,40 @@
       var memStore = {};
 
       return {
-        getStorage: function() { return storage; },
-        getSupported: function() { return supported; },
-        setSupported: function(value) { supported = value; },
-        getMemStore: function() { return memStore; },
+        /**
+         * getMemStore - get the in-memory storage object.
+         * @returns {Object} - the in-memory storage object
+         */
+        getMemStore: function () { return memStore; },
+
+        /**
+         * getStorage - get the supported storage interface (localStorage or sessionStorage).
+         * This variable will be undefined if the Storage interface is not supported.
+         * @returns {Object} - the supported storage interface
+         */
+        getStorage: function () { return storage; },
+
+        /**
+         * getSupported - get the value of the supported boolean.
+         * This value is used by the service for picking the appropriate storage mechanism to use.
+         * @returns {Boolean} - the supported value
+         */
+        getSupported: function () { return supported; },
+
+        /**
+         * setSupported - set the supported boolean.
+         * This value is used by the service for picking the appropriate storage mechanism to use.
+         * @param value - the value to set
+         */
+        setSupported: function (value) { supported = !!value; },
+
+        /**
+         * getConfiguration - get the configuration hash.
+         * @returns {*} - the configuration hash
+         */
+        getConfiguration: function () {
+          return configuration;
+        },
 
         /**
          * set - set a new local storage key-value pair
@@ -39,7 +69,6 @@
             this.remove(key);
             return value;
           }
-
           if (supported === true) {
             storage.setItem(key, angular.toJson(value));
           } else if (configuration.cookieFallback === true) {
@@ -49,6 +78,7 @@
           }
           return value;
         },
+
         /**
          * get - get the value associated with a key
          * @param key - the string that is used to access the value
@@ -63,6 +93,7 @@
             return memStore[key];
           }
         },
+
         /**
          * remove - remove a key-value pair from local storage
          * @param key - the string that is used to access the pair
@@ -76,6 +107,7 @@
             delete memStore[key];
           }
         },
+
         /**
          * bind - directly bind a local storage value to a $scope variable
          * @param $scope - the current scope you want the variable available in
@@ -94,6 +126,7 @@
           }, true);
           return this.get(key);
         },
+
         /**
          * Unbind - unbind and remove a value from local storage
          * @param $scope - the scope the variable was initially set in
@@ -104,6 +137,7 @@
           $scope.$watch(key, function(){});
           this.remove(key);
         },
+
         /**
          * has - indicates whether the key is in the store
          * @param key - the key name to check for existence
@@ -113,10 +147,11 @@
           var value = this.get(key);
           return !(value === undefined || value === null);
         },
+
         /**
-         * Clear - clears all local storage key-value pairs
+         * clear - clears all local storage key-value pairs
          */
-        clear: function() {
+        clear: function () {
           if (supported === true) {
             storage.clear();
           } else if (configuration.cookieFallback === true) {
@@ -126,12 +161,6 @@
           } else {
             memStore = {};
           }
-        },
-        /**
-         * getConfiguration - returns the configuration hash.
-         */
-        getConfiguration: function() {
-          return configuration;
         }
       };
     }];
