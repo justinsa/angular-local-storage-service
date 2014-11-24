@@ -4,6 +4,13 @@
   "description": "An Angular service for client-side set, get, remove, bind, and clean of local storage mechanisms. It provides fallbacks to cookies or in-memory storage based on client capabilities and service configuration.",
   "homepage": "https://github.com/EQCO/angular-local-storage-service",
   "main": "./angular-local-storage-service.js",
+  "ignore": [
+    ".jshintrc",
+    "gulpfile.js",
+    "package.json",
+    "test.html",
+    "spec/services.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/EQCO/angular-local-storage-service.git"
