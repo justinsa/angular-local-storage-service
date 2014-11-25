@@ -119,3 +119,11 @@ $store.getStorage();
 // Get the in-memory storage object.
 $store.getMemStore();
 ```
+
+##Development
+After forking you should only have to run ```npm install``` from a command line to get your environment setup.
+
+After install you have two gulp commands available to you:
+
+1. ```gulp js:lint```
+2. ```gulp js:test```
