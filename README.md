@@ -1,3 +1,5 @@
+![Bower Version](https://img.shields.io/bower/v/ng-local-storage-service.svg)
+
 An Angular service for client-side set, get, remove, bind, and clean of local storage mechanisms. It provides fallbacks to cookies or in-memory storage based on client capabilities and service configuration.
 
 *Credit*
