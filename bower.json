@@ -11,7 +11,7 @@
     "sessionStorage",
     "storage"
   ],
-  "homepage": "https://github.com/EQCO/angular-local-storage-service",
+  "homepage": "https://github.com/justinsa/angular-local-storage-service",
   "main": "./angular-local-storage-service.js",
   "ignore": [
     ".jshintrc",
@@ -22,7 +22,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/EQCO/angular-local-storage-service.git"
+    "url": "git://github.com/justinsa/angular-local-storage-service.git"
   },
   "version": "1.0.0",
   "dependencies": {
