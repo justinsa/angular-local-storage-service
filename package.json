@@ -3,19 +3,16 @@
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/EQCO/angular-local-storage-service/"
+    "url": "https://github.com/justinsa/angular-local-storage-service/"
   },
   "devDependencies": {
-    "bower": "1.3.x",
-    "gulp": "3.x",
-    "gulp-jshint": "1.5.x",
-    "gulp-mocha": "^0.4.1",
-    "gulp-mocha-phantomjs": "^0.2.2",
-    "should": "^3.3.2",
-    "sinon": "^1.10.1"
+    "bower": "*",
+    "gulp": "*",
+    "gulp-jshint": "*",
+    "gulp-mocha-phantomjs": "*"
   },
   "engines": {
-    "npm": "1.4.x"
+    "npm": "*"
   },
   "scripts": {
     "postinstall": "node ./node_modules/bower/bin/bower install",
