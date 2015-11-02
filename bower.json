@@ -1,6 +1,8 @@
 {
   "name": "ng-local-storage-service",
-  "author": "justinsa",
+  "authors": [
+    "Justin Saunders (https://github.com/justinsa)"
+  ],
   "description": "An Angular service for client-side set, get, remove, bind, and clean of local storage mechanisms. It provides fallbacks to cookies or in-memory storage based on client capabilities and service configuration.",
   "keywords": [
     "angular",
@@ -24,7 +26,6 @@
     "type": "git",
     "url": "git://github.com/justinsa/angular-local-storage-service.git"
   },
-  "version": "1.0.0",
   "dependencies": {
     "angular": ">=1.2.19",
     "angular-cookies": ">=1.2.19"

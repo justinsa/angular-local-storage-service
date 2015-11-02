@@ -1,6 +1,11 @@
 {
   "name": "ng-local-storage-service",
   "version": "1.0.0",
+  "author": "Justin Saunders (https://github.com/justinsa)",
+  "contributors": [
+    "Justin Saunders (https://github.com/justinsa)"
+  ],
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/justinsa/angular-local-storage-service/"
