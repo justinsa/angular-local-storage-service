@@ -1,4 +1,16 @@
-(function (window, angular, undefined) {
+/* globals define, module, window */
+(function (root, factory) {
+  'use strict';
+  if (typeof define === 'function' && define.amd) {
+    define(['angular', 'angular-cookies'], factory);
+  } else if (typeof module === 'object' && module.exports) {
+    module.exports = factory(
+      require('angular'),
+      require('angular-cookies'));
+  } else {
+    factory(root.angular, root.ngCookies);
+  }
+}(this, function (angular, ngCookies, undefined) {
   'use strict';
   angular.module('local.storage', ['ngCookies']).provider('$store', function() {
     var configuration = {
@@ -165,4 +177,5 @@
       };
     }];
   });
-})(window, window.angular);
+  return angular;
+}));
