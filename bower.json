@@ -27,8 +27,8 @@
     "url": "git://github.com/justinsa/angular-local-storage-service.git"
   },
   "dependencies": {
-    "angular": ">=1.2.19",
-    "angular-cookies": ">=1.2.19"
+    "angular": "*",
+    "angular-cookies": "*"
   },
   "devDependencies": {
     "angular-mocks": "*",

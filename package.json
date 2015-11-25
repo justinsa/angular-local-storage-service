@@ -14,7 +14,8 @@
     "bower": "*",
     "gulp": "*",
     "gulp-jshint": "*",
-    "gulp-mocha-phantomjs": "*"
+    "gulp-mocha-phantomjs": "*",
+    "jshint-stylish": "*"
   },
   "engines": {
     "npm": "*"

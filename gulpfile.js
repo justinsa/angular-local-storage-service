@@ -4,7 +4,8 @@ var jshint = require('gulp-jshint');
 gulp.task('js:lint', function() {
   return gulp.src(['./angular-local-storage-service.js', './gulpfile.js', './tests.js'])
     .pipe(jshint())
-    .pipe(jshint.reporter('default'));
+    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(jshint.reporter('fail'));
 });
 gulp.task('js:test', function() {
   var mochaPhantomJS = require('gulp-mocha-phantomjs');
