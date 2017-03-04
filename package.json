@@ -1,6 +1,6 @@
 {
   "name": "ng-local-storage-service",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Justin Saunders (https://github.com/justinsa)",
   "contributors": [
     "Justin Saunders (https://github.com/justinsa)"
@@ -10,19 +10,22 @@
     "type": "git",
     "url": "https://github.com/justinsa/angular-local-storage-service/"
   },
+  "dependencies": {
+    "angular": "*",
+    "angular-cookies": "*"
+  },
   "devDependencies": {
-    "bower": "*",
+    "angular-mocks": "*",
     "gulp": "*",
     "gulp-jshint": "*",
     "gulp-mocha-phantomjs": "*",
-    "jshint-stylish": "*"
+    "jshint": "*",
+    "jshint-stylish": "*",
+    "mocha": "*",
+    "should": "*",
+    "sinon": "*"
   },
   "engines": {
     "npm": "*"
-  },
-  "scripts": {
-    "postinstall": "node ./node_modules/bower/bin/bower install",
-    "postupdate": "node ./node_modules/bower/bin/bower update",
-    "test": "gulp js:test"
   }
 }

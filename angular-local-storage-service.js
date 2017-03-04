@@ -6,7 +6,8 @@
   } else if (typeof module === 'object' && module.exports) {
     module.exports = factory(
       require('angular'),
-      require('angular-cookies'));
+      require('angular-cookies')
+    );
   } else {
     factory(root.angular, root.ngCookies);
   }

@@ -6,12 +6,15 @@
   "description": "An Angular service for client-side set, get, remove, bind, and clean of local storage mechanisms. It provides fallbacks to cookies or in-memory storage based on client capabilities and service configuration.",
   "keywords": [
     "angular",
+    "cookie storage",
+    "cookieStorage",
     "local storage",
     "localStorage",
     "provider",
     "session storage",
     "sessionStorage",
-    "storage"
+    "storage",
+    "storage service"
   ],
   "homepage": "https://github.com/justinsa/angular-local-storage-service",
   "main": "./angular-local-storage-service.js",
@@ -26,14 +29,5 @@
     "type": "git",
     "url": "git://github.com/justinsa/angular-local-storage-service.git"
   },
-  "dependencies": {
-    "angular": "*",
-    "angular-cookies": "*"
-  },
-  "devDependencies": {
-    "angular-mocks": "*",
-    "mocha": "*",
-    "should": "*",
-    "sinon": "*"
-  }
+  "dependencies": {}
 }
