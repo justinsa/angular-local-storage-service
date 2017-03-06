@@ -27,5 +27,8 @@
   },
   "engines": {
     "npm": "*"
+  },
+  "scripts": {
+    "test": "gulp"
   }
 }
