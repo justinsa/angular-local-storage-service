@@ -1,15 +1,17 @@
 /* globals define, module */
 (function (root, factory) {
   'use strict';
-  if (typeof define === 'function' && define.amd) {
+  if (typeof module !== 'undefined' && module.exports) {
+    if (typeof angular === 'undefined') {
+      factory(require('angular'), require('angular-cookies'));
+    } else {
+      factory(window.angular);
+    }
+    module.exports = 'ng-local-storage-service';
+  } else if (typeof define === 'function' && define.amd) {
     define(['angular', 'angular-cookies'], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    module.exports = factory(
-      require('angular'),
-      require('angular-cookies')
-    );
   } else {
-    factory(root.angular, root.ngCookies);
+    factory(root.angular);
   }
 }(this, function (angular, ngCookies, undefined) {
   'use strict';
