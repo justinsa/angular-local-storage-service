@@ -10,11 +10,9 @@
     "type": "git",
     "url": "https://github.com/justinsa/angular-local-storage-service/"
   },
-  "dependencies": {
-    "angular": "*",
-    "angular-cookies": "*"
-  },
   "devDependencies": {
+    "angular": "*",
+    "angular-cookies": "*",
     "angular-mocks": "*",
     "gulp": "*",
     "gulp-jshint": "*",
