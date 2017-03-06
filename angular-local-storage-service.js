@@ -5,7 +5,7 @@
     if (typeof angular === 'undefined') {
       factory(require('angular'), require('angular-cookies'));
     } else {
-      factory(window.angular);
+      factory(root.angular);
     }
     module.exports = 'ng-local-storage-service';
   } else if (typeof define === 'function' && define.amd) {
