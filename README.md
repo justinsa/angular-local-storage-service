@@ -1,5 +1,6 @@
 [![Bower Version](https://img.shields.io/bower/v/ng-local-storage-service.svg)](https://github.com/justinsa/angular-local-storage-service)
 [![NPM Version](https://img.shields.io/npm/v/ng-local-storage-service.svg)](https://www.npmjs.com/package/ng-local-storage-service)
+![Master Build Status](https://codeship.com/projects/eedc85e0-33d1-0133-56cd-7a6ac2bad7d6/status?branch=master)
 [![license](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](https://github.com/justinsa/angular-local-storage-service/blob/master/LICENSE)
 
 An Angular service for client-side set, get, remove, bind, and clean of local storage mechanisms. It provides fallbacks to cookies or in-memory storage based on client capabilities and service configuration.
