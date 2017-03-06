@@ -1,4 +1,3 @@
-[Bb]ower_[Cc]omponents/
-[Nn]ode_[Mm]odules/
-*.[Ll]og
+node_modules/
+*.log
 temp/
