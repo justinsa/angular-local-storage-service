@@ -28,6 +28,5 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/justinsa/angular-local-storage-service.git"
-  },
-  "dependencies": {}
+  }
 }
