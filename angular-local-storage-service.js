@@ -1,4 +1,4 @@
-/* globals define, module, window */
+/* globals define, module */
 (function (root, factory) {
   'use strict';
   if (typeof define === 'function' && define.amd) {
@@ -27,12 +27,12 @@
       return configuration;
     };
 
-    this.$get = ['$cookieStore', '$log', '$parse', function ($cookieStore, $log, $parse) {
-      var storage = (typeof window.localStorage === 'undefined') ? undefined : window.localStorage;
+    this.$get = ['$cookieStore', '$log', '$parse', '$window', function ($cookieStore, $log, $parse, $window) {
+      var storage = (typeof $window.localStorage === 'undefined') ? undefined : $window.localStorage;
       if (configuration.useSessionStorage === true) {
-        storage = (typeof window.sessionStorage === 'undefined') ? undefined : window.sessionStorage;
+        storage = (typeof $window.sessionStorage === 'undefined') ? undefined : $window.sessionStorage;
       }
-      var supported = !(typeof storage === 'undefined' || typeof window.JSON === 'undefined');
+      var supported = !(typeof storage === 'undefined' || typeof $window.JSON === 'undefined');
       var memStore = {};
 
       return {
