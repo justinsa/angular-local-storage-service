@@ -4,12 +4,11 @@ var jshint = require('gulp-jshint');
 gulp.task('js:lint', function() {
   return gulp.src(['./angular-local-storage-service.js', './gulpfile.js', './tests.js'])
     .pipe(jshint())
-    .pipe(jshint.reporter('jshint-stylish'))
     .pipe(jshint.reporter('fail'));
 });
 gulp.task('js:test', function() {
-  var mochaPhantomJS = require('gulp-mocha-phantomjs');
+  var mochaPhantom = require('gulp-mocha-phantomjs');
   return gulp.src('./test.html')
-    .pipe(mochaPhantomJS());
+    .pipe(mochaPhantom());
 });
 gulp.task('default', ['js:lint', 'js:test']);

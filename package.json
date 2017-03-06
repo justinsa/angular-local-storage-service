@@ -20,7 +20,6 @@
     "gulp-jshint": "*",
     "gulp-mocha-phantomjs": "*",
     "jshint": "*",
-    "jshint-stylish": "*",
     "mocha": "*",
     "should": "*",
     "sinon": "*"
