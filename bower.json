@@ -17,6 +17,7 @@
     "storage service"
   ],
   "homepage": "https://github.com/justinsa/angular-local-storage-service",
+  "license": "MIT",
   "main": "./angular-local-storage-service.js",
   "ignore": [
     ".jshintrc",
