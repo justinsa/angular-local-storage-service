@@ -2,11 +2,9 @@
 (function (root, factory) {
   'use strict';
   if (typeof module !== 'undefined' && module.exports) {
-    if (typeof angular === 'undefined') {
-      factory(require('angular'));
-    } else {
-      factory(root.angular);
-    }
+    factory(
+      typeof angular === 'undefined' ? require('angular') : root.angular
+    );
     module.exports = 'ng-local-storage-service';
   } else if (typeof define === 'function' && define.amd) {
     define(['angular'], factory);

@@ -8,7 +8,7 @@ An Angular service for client-side set, get, remove, bind, and clean of local st
 ##Dependencies
 
 * AngularJS - http://angularjs.org
-  * Angular Cookies - ngCookies - Only required if ```cookieFallback``` is enabled.
+* Angular Cookies (ngCookies) - Only required if ```cookieFallback``` is enabled.
 
 ##Features
 
@@ -19,11 +19,12 @@ An Angular service for client-side set, get, remove, bind, and clean of local st
 
 ##Basic Setup
 
-1. Add this module to your app as a dependency:
+Add this module to your app as a dependency:
 ```JAVASCRIPT
 var app = angular.module('yourApp', ['local-storage.service']);
 ```
-2. Inject $store as a parameter in declarations that require it:
+
+Inject $store as a parameter in declarations that require it:
 ```JAVASCRIPT
 app.controller('yourController', function($scope, $store){ ... });
 ```
@@ -32,8 +33,8 @@ app.controller('yourController', function($scope, $store){ ... });
 
 The default configuration is:
 
-1. cookieFallback: true - if true, then session cookies are used for storage when the browser does not support the Storage interface. If false, then cookies are never used.
-2. useSessionStorage: false - if true, then sessionStorage is used instead of localStorage. If false, localStorage is used as the default. This is, of course, dependent on the browser supporting the Storage interface.
+1. ```cookieFallback: true``` - if true, then session cookies are used for storage when the browser does not support the Storage interface. If false, then cookies are never used.
+2. ```useSessionStorage: false``` - if true, then sessionStorage is used instead of localStorage. If false, localStorage is used as the default. This is, of course, dependent on the browser supporting the Storage interface.
 
 To override the default configuration options, configure the module with an options argument during application configuration:
 ```JAVASCRIPT
