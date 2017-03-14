@@ -8,7 +8,7 @@ An Angular service for client-side set, get, remove, bind, and clean of local st
 ##Dependencies
 
 * AngularJS - http://angularjs.org
-  * Angular Cookies - ngCookies
+  * Angular Cookies - ngCookies - Only required if ```cookieFallback``` is enabled.
 
 ##Features
 
@@ -21,7 +21,7 @@ An Angular service for client-side set, get, remove, bind, and clean of local st
 
 1. Add this module to your app as a dependency:
 ```JAVASCRIPT
-var app = angular.module('yourApp', ['local.storage']);
+var app = angular.module('yourApp', ['local-storage.service']);
 ```
 2. Inject $store as a parameter in declarations that require it:
 ```JAVASCRIPT

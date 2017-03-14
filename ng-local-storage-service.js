@@ -3,19 +3,19 @@
   'use strict';
   if (typeof module !== 'undefined' && module.exports) {
     if (typeof angular === 'undefined') {
-      factory(require('angular'), require('angular-cookies'));
+      factory(require('angular'));
     } else {
       factory(root.angular);
     }
     module.exports = 'ng-local-storage-service';
   } else if (typeof define === 'function' && define.amd) {
-    define(['angular', 'angular-cookies'], factory);
+    define(['angular'], factory);
   } else {
     factory(root.angular);
   }
-}(this, function (angular, ngCookies, undefined) {
+}(this, function (angular, undefined) {
   'use strict';
-  angular.module('local.storage', ['ngCookies']).provider('$store', function() {
+  angular.module('local-storage.service', []).provider('$store', function() {
     var configuration = {
       cookieFallback: true,
       useSessionStorage: false
@@ -29,13 +29,29 @@
       return configuration;
     };
 
-    this.$get = ['$cookieStore', '$log', '$parse', '$window', function ($cookieStore, $log, $parse, $window) {
+    this.$get = ['$injector', '$log', '$parse', '$window', function ($injector, $log, $parse, $window) {
       var storage = (typeof $window.localStorage === 'undefined') ? undefined : $window.localStorage;
       if (configuration.useSessionStorage === true) {
         storage = (typeof $window.sessionStorage === 'undefined') ? undefined : $window.sessionStorage;
       }
       var supported = !(typeof storage === 'undefined' || typeof $window.JSON === 'undefined');
       var memStore = {};
+
+      var ngCookieService;
+      var cookieService = function () {
+        if (configuration.cookieFallback === false) {
+          $log.error('Cookie storage is disabled and the $cookieStore service will not be injected');
+          return undefined;
+        }
+        if (ngCookieService === undefined) {
+          if (!$injector.has('$cookieStore')) {
+            $log.error('No matching service registered in Angular: $cookieStore');
+            return undefined;
+          }
+          ngCookieService = $injector.get('$cookieStore');
+        }
+        return ngCookieService;
+      };
 
       return {
         /**
@@ -87,7 +103,7 @@
           if (supported === true) {
             storage.setItem(key, angular.toJson(value));
           } else if (configuration.cookieFallback === true) {
-            $cookieStore.put(key, value);
+            cookieService().put(key, value);
           } else {
             memStore[key] = value;
           }
@@ -103,7 +119,7 @@
           if (supported === true) {
             return angular.fromJson(storage.getItem(key));
           } else if (configuration.cookieFallback === true) {
-            return $cookieStore.get(key);
+            return cookieService().get(key);
           } else {
             return memStore[key];
           }
@@ -117,7 +133,7 @@
           if (supported === true) {
             storage.removeItem(key);
           } else if (configuration.cookieFallback === true) {
-            $cookieStore.remove(key);
+            cookieService().remove(key);
           } else {
             delete memStore[key];
           }

@@ -3,7 +3,7 @@
 describe('$store', function() {
   describe('configure', function() {
     describe('default settings', function() {
-      beforeEach(module('local.storage'));
+      beforeEach(module('local-storage.service'));
 
       it('should set cookieFallback to true', 
         inject(function ($store) {
@@ -20,7 +20,7 @@ describe('$store', function() {
 
     describe('overridden settings', function() {
       beforeEach(
-        module('local.storage', function ($storeProvider) {
+        module('local-storage.service', function ($storeProvider) {
           $storeProvider.configure({
             cookieFallback: false,
             useSessionStorage: true
@@ -43,7 +43,7 @@ describe('$store', function() {
   });
 
   describe('$get', function() {
-    beforeEach(module('local.storage'));
+    beforeEach(module('local-storage.service'));
 
     it('should have a list of functions',
       inject(function ($store) {
@@ -75,18 +75,18 @@ describe('$store', function() {
         })
       );
 
-      it('should store info in the cookie store if the environment is not supported',
+      it('should store info in the cookie store if the environment is not supported', function() {
+        module('ngCookies');
         inject(function ($store, $cookieStore) {
           sinon.spy($cookieStore, 'put');
           $store.setSupported(false);
-          var result = $store.set('foo', 'bar');
+          $store.set('foo', 'bar').should.equal('bar');
           $cookieStore.put.calledOnce.should.be.true; // jshint ignore:line
-          result.should.equal('bar');
-        })
-      );
+        });
+      });
 
       it('should store info in the memStorage if the environment is not supported and cookie fallback is disabled', function() {
-        module('local.storage', function ($storeProvider) {
+        module('local-storage.service', function ($storeProvider) {
           $storeProvider.configure({cookieFallback: false});
         });
         inject(function ($store) {
@@ -99,7 +99,7 @@ describe('$store', function() {
     });
 
     describe('get', function() {
-      beforeEach(module('local.storage'));
+      beforeEach(module('local-storage.service'));
 
       it('should return the value from the store',
         inject(function ($store) {
@@ -108,16 +108,21 @@ describe('$store', function() {
         })
       );
 
-      it('should return the value from the cookie store if the environment is not supported',
-        inject(function ($store) {
+      it('should return the value from the cookie store if the environment is not supported', function() {
+        module('ngCookies');
+        inject(function ($store, $cookieStore) {
+          sinon.spy($cookieStore, 'put');
+          sinon.spy($cookieStore, 'get');
           $store.setSupported(false);
           $store.set('foo', 'bar');
           $store.get('foo').should.equal('bar');
-        })
-      );
+          $cookieStore.put.calledOnce.should.be.true; // jshint ignore:line
+          $cookieStore.get.calledOnce.should.be.true; // jshint ignore:line
+        });
+      });
 
       it('should return the value from the memStorage if the environment is not supported and cookie fallback is disabled', function() {
-        module('local.storage', function ($storeProvider) {
+        module('local-storage.service', function ($storeProvider) {
           $storeProvider.configure({cookieFallback: false});
         });
         inject(function ($store) {
@@ -130,7 +135,7 @@ describe('$store', function() {
     });
 
     describe('remove', function() {
-      beforeEach(module('local.storage'));
+      beforeEach(module('local-storage.service'));
 
       it('should remove the value from the store',
         inject(function ($store) {
@@ -140,17 +145,18 @@ describe('$store', function() {
         })
       );
 
-      it('should remove the value from the cookie store if the environment is not supported',
+      it('should remove the value from the cookie store if the environment is not supported', function() {
+        module('ngCookies');
         inject(function ($store, $cookieStore) {
           $store.setSupported(false);
           sinon.spy($cookieStore, 'remove');
           $store.remove('foo');
           $cookieStore.remove.calledOnce.should.be.true; // jshint ignore:line
-        })
-      );
+        });
+      });
 
       it('should remove the value from the memStorage if the environment is not supported and cookie fallback is disabled', function() {
-        module('local.storage', function ($storeProvider) {
+        module('local-storage.service', function ($storeProvider) {
           $storeProvider.configure({cookieFallback: false});
         });
         inject(function ($store) {
@@ -164,7 +170,7 @@ describe('$store', function() {
     });
 
     describe('bind', function() {
-      beforeEach(module('local.storage'));
+      beforeEach(module('local-storage.service'));
 
       it('should add a watch to a scope',
         inject(function ($store, $rootScope) {
@@ -186,7 +192,7 @@ describe('$store', function() {
     });
 
     describe('unbind', function() {
-      beforeEach(module('local.storage'));
+      beforeEach(module('local-storage.service'));
 
       it('should empty the watcher',
         inject(function ($store, $rootScope) {
@@ -213,7 +219,7 @@ describe('$store', function() {
     });
 
     describe('has', function() {
-      beforeEach(module('local.storage'));
+      beforeEach(module('local-storage.service'));
 
       it('should return false if the key is not in the store',
         inject(function ($store) {
@@ -222,7 +228,7 @@ describe('$store', function() {
         })
       );
 
-      it('should return true if the key in the store',
+      it('should return true if the key is in the store',
         inject(function ($store) {
           $store.set('foo', 'bar');
           $store.has('foo').should.be.true; // jshint ignore:line
@@ -231,7 +237,7 @@ describe('$store', function() {
     });
 
     describe('clear', function() {
-      beforeEach(module('local.storage'));
+      beforeEach(module('local-storage.service'));
 
       it('should remove everything if the environment is supported',
         inject(function ($store) {
@@ -245,7 +251,8 @@ describe('$store', function() {
         })
       );
 
-      it('should not remove anything if cookie fallback is enabled',
+      it('should not remove anything if cookie fallback is enabled', function() {
+        module('ngCookies');
         inject(function ($store) {
           $store.setSupported(false);
           $store.set('foo', 1);
@@ -255,11 +262,11 @@ describe('$store', function() {
           $store.has('foo').should.be.true; // jshint ignore:line
           $store.has('bar').should.be.true; // jshint ignore:line
           $store.has('baz').should.be.true; // jshint ignore:line
-        })
-      );
+        });
+      });
 
       it('should create a new memStorage object if environment is not supported and cookie fallback is disabled', function() {
-        module('local.storage', function ($storeProvider) {
+        module('local-storage.service', function ($storeProvider) {
           $storeProvider.configure({cookieFallback: false});
         });
         inject(function ($store) {
