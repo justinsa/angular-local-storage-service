@@ -5,19 +5,19 @@
 
 An Angular service for client-side set, get, remove, bind, and clean of local storage mechanisms. It provides fallbacks to cookies or in-memory storage based on client capabilities and service configuration.
 
-##Dependencies
+## Dependencies
 
 * AngularJS - http://angularjs.org
 * Angular Cookies (ngCookies) - Only required if ```cookieFallback``` is enabled.
 
-##Features
+## Features
 
 * Directly store Objects, Arrays, Floats, Booleans, and Strings. No need to convert objects to strings and then reverse them.
 * Two way bind a $scope variable to localStorage or sessionStorage which will be updated whenever the model is updated, and vice versa.
 * Cookie fallback if Storage is not supported.
 * In-memory fallback if Storage is not supported and storing to cookies is disabled.
 
-##Basic Setup
+## Basic Setup
 
 Add this module to your app as a dependency:
 ```JAVASCRIPT
@@ -29,7 +29,7 @@ Inject $store as a parameter in declarations that require it:
 app.controller('yourController', function($scope, $store){ ... });
 ```
 
-##Configuration Options
+## Configuration Options
 
 The default configuration is:
 
@@ -46,8 +46,9 @@ app.config(['$storeProvider', function ($storeProvider) {
 }]);
 ```
 
-##Basic Usage
-###Binding
+## Basic Usage
+
+### bind
 ```JAVASCRIPT
 // Binding it to a $scope.variable - the params ($scope, varName, defaultValue(optional))
 $store.bind($scope, 'viewType', 'cardView');
@@ -56,31 +57,31 @@ $store.bind($scope, 'viewType', 'cardView');
 $scope.viewType = "ANYTHING";
 ```
 
-###Unbinding
+### unbind
 ```JAVASCRIPT
 // Unbinding and remove a $scope.variable
 $store.unbind($scope, 'viewType');
 ```
 
-###Set
+### set
 ```JAVASCRIPT
 // Set a key-value pair in storage
 $store.set("key", "value");
 ```
 
-###Get
+### get
 ```JAVASCRIPT
 // Get a value from storage
 $store.get("key");
 ```
 
-###Has
+### has
 ```JAVASCRIPT
 // Determine if a key is present in storage
 $store.has("key");
 ```
 
-###Remove
+### remove
 ```JAVASCRIPT
 // Remove a key-value pair from storage
 $store.remove("key");
